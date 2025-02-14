@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Happy Valentine's Day! 💖</title>
+    <style>
+       *{
+            font-family: 'Kanit', sans-serif;
+        }
+        body {
+            text-align: center;
+            background-color: #ffe6ea;
+            font-family: 'Arial', sans-serif;
+            color: #d63384;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            margin-top: 20px;
+            text-shadow: 2px 2px #ff4d6d;
+        }
+        .upload-container {
+            margin: 20px auto;
+            padding: 20px;
+            background: #ffccd5;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            width: 60%;
+        }
+        input[type="file"] {
+            margin-top: 10px;
+        }
+        .button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 10px;
+            background-color: #ff4d6d;
+            color: white;
+            cursor: pointer;
+            display: none;
+        }
+        .button:hover {
+            background-color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day! 💖</h1>
+
+    <div class="upload-container">
+        <h2>รูป Poppy ที่ชอบที่สุด 📸</h2>
+        <input type="file" id="imageUpload" accept="image/*">
+        <button class="button" id="confirmBtn">ไปกันต่ออ</button>
+    </div>
+
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('confirmBtn').style.display = 'block'; // แสดงปุ่ม "ตกลง"
+            }
+        });
+
+        document.getElementById('confirmBtn').addEventListener('click', function() {
+            const file = document.getElementById('imageUpload').files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    localStorage.setItem('uploadedImage', e.target.result); // บันทึกรูปใน localStorage
+                    window.location.href = 'display.html'; // ไปยังหน้าแสดงรูป
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

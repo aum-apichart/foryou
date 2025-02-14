@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <title>Valentine</title>
+    <style>
+        *{
+            font-family: 'Kanit', sans-serif;
+        }
+        body {
+            text-align: center;
+            background-color: #ffccd5;
+           
+            color: #d63384;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            margin-top: 50px;
+            text-shadow: 2px 2px #ff4d6d;
+        }
+        .buttons {
+            margin-top: 20px;
+            position: relative;
+        }
+        .button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .yes {
+            background-color: #ff4d6d;
+            color: white;
+            margin-right: 20px;
+        }
+        .yes:hover {
+            background-color: #d63384;
+        }
+        .no {
+            background-color: #6c757d;
+            color: white;
+            position: absolute;
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            opacity: 0.7;
+            animation: floatUp 5s infinite linear;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh); opacity: 0; }
+            100% { transform: translateY(-10vh); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>คุณสนใจ</h1><p></p>
+    <h2>ไปกินเต้กกับเราไหม? 💖</h2>
+    <img src="s.jpg" alt="ตัวอย่างรูปภาพ" width="300" height="200">
+
+    <div class="buttons">
+        <button class="button yes" onclick="window.location.href='valentine.html'">ไปกันโลดด</button>
+        <button class="button no" onmouseover="moveButton()">บ่ไป</button>
+    </div>
+
+    <div class="hearts"></div>
+
+    <script>
+        function moveButton() {
+            const button = document.querySelector('.no');
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            button.style.left = `${x}px`;
+            button.style.top = `${y}px`;
+        }
+
+        function createHearts() {
+            const container = document.querySelector('.hearts');
+            for (let i = 0; i < 15; i++) {
+                let heart = document.createElement('img');
+                heart.classList.add('heart');
+                heart.src = 'img/heart.png'; // ใช้รูปหัวใจจากโฟลเดอร์ img
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDuration = `${4 + Math.random() * 3}s`;
+                heart.style.width = `${20 + Math.random() * 30}px`; // ขนาดสุ่ม
+                heart.style.height = 'auto';
+                container.appendChild(heart);
+            }
+        }
+
+        createHearts();
+    </script>
+</body>
+</html>
